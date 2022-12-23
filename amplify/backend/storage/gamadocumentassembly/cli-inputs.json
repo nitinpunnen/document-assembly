@@ -1,0 +1,14 @@
+{
+  "resourceName": "gamadocumentassembly",
+  "policyUUID": "ec93f54d",
+  "bucketName": "documentassembly-gama-landingzone",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
