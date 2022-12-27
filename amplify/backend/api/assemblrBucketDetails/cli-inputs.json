@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "paths": {
+    "/assemblr/objectMetadata": {
+      "name": "/assemblr/objectMetadata",
+      "lambdaFunction": "assemblrGetObjectMetadata",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/assemblr/updateMetadata": {
+      "name": "/assemblr/updateMetadata",
+      "lambdaFunction": "assemblrUpdateMetadata",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/assemblr/kendraSearch": {
+      "name": "/assemblr/kendraSearch",
+      "lambdaFunction": "asssemblrSearch",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/assemblr/listbucket": {
+      "name": "/assemblr/listbucket",
+      "lambdaFunction": "assemblrListBucket",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

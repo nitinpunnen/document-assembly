@@ -1,3 +1,4 @@
-.my-custom-table td {
-    padding: 3px 15px !important;
+.dropZone {
+    height: 100px !important;
+    min-width: 400px !important;
 }

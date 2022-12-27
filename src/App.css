@@ -1,5 +1,5 @@
 .App {
-  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-family: "Amazon Ember", "Helvetica Neue", sans-serif;
 }
 
 .App-logo {
@@ -39,10 +39,21 @@
 
 .Navbar-Item {
   text-decoration: none;
-  color: darkblue;
+  color: white;
+  margin: 0 20px;
 }
 
 .Logo {
   width: 42px;
   height: 42px;
+}
+
+.amplify-button span {
+  font-size: 12px;
+  color: #1a1a1a;
+  padding-left: 5px;
+}
+
+.amplify-button {
+  margin: 0 10px;
 }

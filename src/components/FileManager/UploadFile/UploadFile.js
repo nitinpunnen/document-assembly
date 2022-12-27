@@ -11,9 +11,9 @@ import {
     View,
 } from '@aws-amplify/ui-react';
 import {
-    createArtifact as createArtifactMutation,
-
-} from "../../../graphql/mutations"
+    createArtifact as createArtifactMutation
+} from "../../../graphql/mutations";
+import { FileUploader } from "react-drag-drop-files";
 
 const UploadFile = (props) => {
     const [files, setFiles] = useState([]);
@@ -35,7 +35,7 @@ const UploadFile = (props) => {
                 fileName: itemFilename,
             };
             try {
-                let response = await API.graphql({
+                await API.graphql({
                     query: createArtifactMutation,
                     variables: {input: data},
                 });
@@ -78,29 +78,28 @@ const UploadFile = (props) => {
         setFiles(newFiles);
     }
 
+    const handleChange = (selectedFiles) => {
+        console.log(selectedFiles);
+        setFiles(Array.from(selectedFiles));
+    };
+
     return (
         <Flex
             direction={{base: 'column', large: 'column'}}
-            padding="1rem"
-            width="90%"
+            width="100%"
             style={{display: "block", margin: "10px auto"}}
         >
-            <View as="form" style={{margin: "15px 0", padding: "15px", border: "1px solid lightgrey"}}
+            <View style={{margin: "15px 0", padding: "15px", border: "1px solid lightgrey"}}
                   onSubmit={uploadFiles}>
                 <Flex direction="row" alignItems="center" justifyContent="center"
-                      style={{width: "70%", margin: "10px auto"}}>
-                    <View
-                        name="fileName"
-                        as="input"
-                        type="file"
-                        multiple
-                        onChange={(event) => {
-                            const chosenFiles = Array.prototype.slice.call(event.target.files);
-                            setFiles(chosenFiles);
-                        }}
-                    />
+                      style={{width: "100%", margin: "10px auto"}}>
+
+                    <FileUploader multiple={true}
+                                  handleChange={handleChange}
+                                  name="selectedFiles"
+                                  classes="dropZone"/>
                     <Button type="submit" variation="primary">
-                        Upload Files
+                        Upload
                     </Button>
                 </Flex>
                 <Table

@@ -16,10 +16,33 @@
         "documentassembly3b864c2f": {}
       },
       "api": {
-        "documentassembly": {}
+        "documentassembly": {},
+        "assemblrBucketDetails": {}
       },
       "storage": {
         "gamadocumentassembly": {}
+      },
+      "function": {
+        "readWordDocument": {
+          "deploymentBucketName": "amplify-documentassembly-dev-203749-deployment",
+          "s3Key": "amplify-builds/readWordDocument-3075354352544f496341-build.zip"
+        },
+        "assemblrGetObjectMetadata": {
+          "deploymentBucketName": "amplify-documentassembly-dev-203749-deployment",
+          "s3Key": "amplify-builds/assemblrGetObjectMetadata-4f304151534c5a73527a-build.zip"
+        },
+        "assemblrUpdateMetadata": {
+          "deploymentBucketName": "amplify-documentassembly-dev-203749-deployment",
+          "s3Key": "amplify-builds/assemblrUpdateMetadata-50576b796a326c454e37-build.zip"
+        },
+        "asssemblrSearch": {
+          "deploymentBucketName": "amplify-documentassembly-dev-203749-deployment",
+          "s3Key": "amplify-builds/asssemblrSearch-4e36344b45584e47777a-build.zip"
+        },
+        "assemblrListBucket": {
+          "deploymentBucketName": "amplify-documentassembly-dev-203749-deployment",
+          "s3Key": "amplify-builds/assemblrListBucket-3679532b71344d44772b-build.zip"
+        }
       }
     }
   }
