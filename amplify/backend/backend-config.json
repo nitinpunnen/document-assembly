@@ -77,6 +77,14 @@
             "Name",
             "Arn"
           ]
+        },
+        {
+          "category": "function",
+          "resourceName": "assemblrAddFolder",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
         }
       ]
     }
@@ -110,6 +118,11 @@
       "service": "Lambda"
     },
     "assemblrListBucket": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "assemblrAddFolder": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"

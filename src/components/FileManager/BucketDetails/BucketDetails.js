@@ -5,36 +5,25 @@ import TreeView from '@mui/lab/TreeView';
 import TreeItem, {treeItemClasses} from '@mui/lab/TreeItem';
 import {Button, Flex, Text} from "@aws-amplify/ui-react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAdd, faMaximize, faMinimize, faUpload} from "@fortawesome/free-solid-svg-icons";
-import {useState} from "react";
+import {faAdd, faMaximize, faMinimize} from "@fortawesome/free-solid-svg-icons";
+import {useRef, useState} from "react";
+import {Dialog, DialogActions, DialogContent, DialogTitle, TextField} from "@mui/material";
+import {API} from "aws-amplify";
 
-const BucketDetails = () => {
+const BucketDetails = (props) => {
     const [expanded, setExpanded] = useState([]);
     const [selected, setSelected] = useState([]);
+    const [open, setOpen] = useState(false);
+    const valueRef = useRef('')
 
-    const data = {
-        id: 'public',
-        name: 'Public',
-        children: [
-            {
-                name: "Engineering",
-                id: "Engineering"
-            },
-            {
-                name: "Finance",
-                id: "Finance"
-            },
-            {
-                children: [
-                    {
-                        name: "Design",
-                        id: "Quality/Design"
-                    }
-                ],
-                name: "Quality",
-                id: "Quality"
-            }
-        ]
+    const data = props.treeViewData;
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
     };
 
     const handleToggle = (event, nodeIds) => {
@@ -44,18 +33,33 @@ const BucketDetails = () => {
     const handleSelect = (event, nodeIds) => {
         console.log(nodeIds)
         setSelected(nodeIds);
+        props.onFolderSelected(nodeIds);
     };
 
     const handleExpandClick = () => {
         setExpanded((oldExpanded) =>
-            oldExpanded.length === 0 ? ['public', 'quality'] : [],
+            oldExpanded.length === 0 ? ['public'] : [],
         );
     };
 
-    const handleAddNodeClick = () => {
-        setSelected((oldSelected) =>
-            oldSelected.length === 0 ? ['1', '2', '3', '4', '5', '6', '7', '8', '9'] : [],
-        );
+    async function handleAddFolder() {
+        const newFolder = valueRef.current.value;
+        const parentDir = selected;
+        try {
+            await API.get('assemblrBucketDetails', '/assemblr/addFolder', {
+                headers: {},
+                response: true,
+                queryStringParameters: {
+                    newFolder: newFolder,
+                    parentDir: 'public/' + parentDir
+                }
+            });
+        }
+        catch (e) {
+            console.error(e);
+        }
+        setOpen(false);
+        props.onFolderAdded();
     };
 
     function MinusSquare(props) {
@@ -117,10 +121,29 @@ const BucketDetails = () => {
     return (
         <Flex
             direction={{base: 'column', large: 'column'}}>
+            <Dialog open={open} onClose={handleClose} maxWidth={'md'}>
+                <DialogTitle>Upload Files</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="folderName"
+                        label="Folder Name"
+                        type="text"
+                        fullWidth
+                        variant="standard"
+                        inputRef={valueRef}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleAddFolder}>Add</Button>
+                    <Button onClick={handleClose}>Cancel</Button>
+                </DialogActions>
+            </Dialog>
             <Flex
                 direction={{base: 'row'}} width="100%" className='card-header'>
                 <Text style={{flexGrow: 3, color: "#1a1a1a", fontSize: "16px", padding: "0 10px"}}>Folders</Text>
-                <Button variation="link" className='card-button' onClick={handleAddNodeClick}>
+                <Button variation="link" className='card-button' onClick={handleClickOpen}>
                     <div><FontAwesomeIcon icon={faAdd} color="#1a1a1a"/><span>Add</span></div>
                 </Button>
                 <Button variation="link" className='card-button'
@@ -132,7 +155,7 @@ const BucketDetails = () => {
             <Flex
                 direction={{base: 'column', large: 'column'}}
                 style={{padding: "10px"}}>
-                <TreeView
+                {data.id && <TreeView
                     aria-label="customized"
                     defaultExpanded={['public']}
                     defaultCollapseIcon={<MinusSquare/>}
@@ -142,11 +165,10 @@ const BucketDetails = () => {
                     selected={selected}
                     onNodeToggle={handleToggle}
                     onNodeSelect={handleSelect}
-                    multiSelect
                     sx={{height: 264, flexGrow: 1, maxWidth: 400, overflowY: 'auto'}}
                 >
                     {renderTree(data)}
-                </TreeView>
+                </TreeView>}
             </Flex>
         </Flex>
     );

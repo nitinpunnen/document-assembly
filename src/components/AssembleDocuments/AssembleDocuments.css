@@ -1,13 +1,34 @@
-.result-list {
-    list-style: none;
-    padding: 0;
+.App-header {
+    background-color: #282c34;
+    min-height: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    margin-bottom: 5vh;
+    text-align: center;
+    padding: 12px;
 }
 
-.custom-card {
-    width: 90% !important;
-    margin: 0 auto;
-    min-height: 60px !important;
-    box-shadow: none !important;
-    border: 0 !important;
-    padding: 0 !important
+.wrapper-class {
+    padding: 1rem;
+    border: 1px solid #ccc;
+}
+
+.editor-class {
+    background-color: lightgray;
+    padding: 1rem;
+    border: 1px solid #ccc;
+}
+
+.toolbar-class {
+    border: 1px solid #ccc;
+}
+
+.rdw-editor-toolbar div {
+    display: inline;
+    padding: 2px;
+    margin: 0 2px;
 }

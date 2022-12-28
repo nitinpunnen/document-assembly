@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import "./FileManager.css";
 import "@aws-amplify/ui-react/styles.css";
 import {API, Storage} from 'aws-amplify';
@@ -18,50 +18,37 @@ import FolderObjects from "./FolderObjects/FolderObjects";
 import ObjectAttribtutes from "./ObjectAttributes/ObjectAttribtutes";
 
 const FileManager = () => {
-    let [artifacts, setArtifacts] = useState([]);
+    let [folders, setFolders] = useState([]);
+    let [files, setFiles] = useState([]);
     // let [showUpload, setShowUpload] = useState(false)
 
+    const ref = useRef();
+
     useEffect(() => {
-        fetchArtifacts();
+        console.log("In useEffect")
+        fetchDocuments();
     }, []);
 
-    const onUploadComplete = () => {
-        fetchArtifacts();
+    const onFolderAdded = () => {
+        fetchDocuments();
     }
 
-    async function fetchArtifacts() {
-        const apiData = await API.graphql({query: listArtifacts});
-        const artifacts = apiData.data.listArtifacts.items;
-        await Promise.all(
-            artifacts.map(async (artifact) => {
-                if (artifact.fileName) {
-                    const url = await Storage.get(artifact.name);
-                    artifact.fileUrl = url;
-                }
-                return artifact;
-            })
-        );
-        artifacts.sort((a, b) => {
-            if (a.department > b.department) {
-                return 1
-            }
-            if (a.department < b.department) {
-                return -1
-            }
-            return 0;
-        });
-        setArtifacts(artifacts);
+    const onFolderSelected = (selected) => {
+        console.log('FileManager selected ', selected)
+        ref.current.updateDocuments(files, selected);
     }
 
-    async function deleteNote({id, fileName}) {
-        const newNotes = artifacts.filter((note) => note.id !== id);
-        setArtifacts(newNotes);
-        await Storage.remove(fileName);
-        await Storage.remove(fileName + '.metadata.json');
-        await API.graphql({
-            query: deleteArtifactMutation,
-            variables: {input: {id}},
+    async function fetchDocuments() {
+        const response = await API.get('assemblrBucketDetails', '/assemblr/listbucket', {
+            headers: {},
+            response: true
         });
+        console.log(response);
+        const folders = response.data.folders;
+        console.log(folders);
+        const files = response.data.files;
+        setFiles(files);
+        setFolders(folders)
     }
 
     return (
@@ -74,7 +61,7 @@ const FileManager = () => {
             <Flex direction={{base: 'row'}} width="100%"
                   style={{margin: "10px auto"}}>
                 <Text style={{flexGrow: 3, color: "#F56600", fontSize: "24px"}}>File Manager</Text>
-                <Button variation="link" onClick={() => fetchArtifacts()}>
+                <Button variation="link" onClick={() => fetchDocuments()}>
                     <FontAwesomeIcon icon={faRotate} color="#232F3E"/>
                     <span>Sync</span>
                 </Button>
@@ -82,10 +69,10 @@ const FileManager = () => {
             {/*{showUpload && <UploadFile onUploadComplete={() => onUploadComplete()}/>}*/}
             <Flex direction={{base: 'row'}} className='file-manager-layout'>
                 <Card className='file-manager-card bucket-detail-card'>
-                    <BucketDetails/>
+                    <BucketDetails treeViewData={folders} onFolderAdded={() => onFolderAdded()} onFolderSelected={(selected) => onFolderSelected(selected)}/>
                 </Card>
                 <Card className='file-manager-card folder-objects-card'>
-                    <FolderObjects/>
+                    <FolderObjects ref={ref}/>
                 </Card>
                 <Card className='file-manager-card object-attrs-card'>
                     <ObjectAttribtutes/>

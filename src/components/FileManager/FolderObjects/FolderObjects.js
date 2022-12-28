@@ -1,30 +1,34 @@
 import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import {Dialog, DialogActions, DialogContent, DialogTitle} from "@mui/material";
 import {Button, Flex, Text} from "@aws-amplify/ui-react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faUpload} from "@fortawesome/free-solid-svg-icons";
 import UploadFile from "../UploadFile/UploadFile";
+import {forwardRef, useImperativeHandle, useState} from "react";
+import {DataGrid} from '@mui/x-data-grid';
+import {Storage} from "aws-amplify";
 
-function createData(name, calories, fat, carbs, protein) {
-    return {name, calories, fat, carbs, protein};
-}
+const FolderObjects = forwardRef((props, ref) => {
+    useImperativeHandle(ref, () => ({
+        updateDocuments(files, folderName) {
+            console.log("child function ", folderName);
+            if(files[folderName]) {
+                files[folderName].map((document, index) => {
+                    document.id = index;
+                })
+                setDocuments(files[folderName]);
+                setFolderName(folderName);
+            }
+        }
+    }));
 
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+    const [open, setOpen] = useState(false);
+    const [documents, setDocuments] = useState([]);
+    const [folderName, setFolderName] = useState([]);
 
-export default function DenseTable() {
+    const columns = [
+        {field: 'Key', headerName: 'File Name', width: 600},
+        {field: 'Size', headerName: 'Size', width: 70}];
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -34,7 +38,18 @@ export default function DenseTable() {
         setOpen(false);
     };
 
-    const [open, setOpen] = React.useState(false);
+    const handleRowClick = (event) => {
+        console.log("Hello ", event.row.Key)
+    };
+
+    const onUploadComplete = () => {
+        setOpen(false);
+    }
+
+    async function deleteNote({id, fileName}) {
+        await Storage.remove(fileName);
+        await Storage.remove(fileName + '.metadata.json');
+    }
 
     return (
         <Flex
@@ -50,46 +65,27 @@ export default function DenseTable() {
             <Flex
                 direction={{base: 'column', large: 'column'}}
                 style={{padding: "10px"}}>
-                <Dialog open={open} onClose={handleClose}>
+                <Dialog open={open} onClose={handleClose} fullWidth={true} maxWidth={'xl'}>
                     <DialogTitle>Upload Files</DialogTitle>
                     <DialogContent>
-                        <UploadFile/>
+                        <UploadFile onUploadComplete={() => onUploadComplete()}/>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleClose}>Cancel</Button>
-                        <Button onClick={handleClose}>Upload</Button>
                     </DialogActions>
                 </Dialog>
-                <TableContainer component={Paper}>
-                    <Table sx={{minWidth: 650}} size="small" aria-label="a dense table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Dessert (100g serving)</TableCell>
-                                <TableCell align="right">Calories</TableCell>
-                                <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                                <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                                <TableCell align="right">Protein&nbsp;(g)</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {rows.map((row) => (
-                                <TableRow
-                                    key={row.name}
-                                    sx={{'&:last-child td, &:last-child th': {border: 0}}}
-                                >
-                                    <TableCell component="th" scope="row">
-                                        {row.name}
-                                    </TableCell>
-                                    <TableCell align="right">{row.calories}</TableCell>
-                                    <TableCell align="right">{row.fat}</TableCell>
-                                    <TableCell align="right">{row.carbs}</TableCell>
-                                    <TableCell align="right">{row.protein}</TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                {documents && <div style={{height: 400, width: '100%'}}>
+                    <DataGrid
+                        rows={documents}
+                        columns={columns}
+                        pageSize={5}
+                        rowsPerPageOptions={[5]}
+                        checkboxSelection
+                        onRowClick={(event) => handleRowClick(event)}
+                    />
+                </div>}
             </Flex>
         </Flex>
     );
-}
+});
+export default FolderObjects;

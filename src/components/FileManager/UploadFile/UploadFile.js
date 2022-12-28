@@ -68,7 +68,7 @@ const UploadFile = (props) => {
                 }
             }
         }
-        event.target.reset();
+        // event.target.reset();
         setFiles([]);
         props.onUploadComplete();
     }
@@ -89,16 +89,14 @@ const UploadFile = (props) => {
             width="100%"
             style={{display: "block", margin: "10px auto"}}
         >
-            <View style={{margin: "15px 0", padding: "15px", border: "1px solid lightgrey"}}
-                  onSubmit={uploadFiles}>
+            <View style={{margin: "15px 0", padding: "15px", border: "1px solid lightgrey"}}>
                 <Flex direction="row" alignItems="center" justifyContent="center"
                       style={{width: "100%", margin: "10px auto"}}>
-
                     <FileUploader multiple={true}
                                   handleChange={handleChange}
                                   name="selectedFiles"
                                   classes="dropZone"/>
-                    <Button type="submit" variation="primary">
+                    <Button type="submit" variation="primary" onClick={uploadFiles}>
                         Upload
                     </Button>
                 </Flex>

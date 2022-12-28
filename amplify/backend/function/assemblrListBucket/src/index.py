@@ -23,7 +23,7 @@ def lambda_handler(event, context):
             myDict[folder_name] = []
         # Files comes after folder
         elif 'public/' + folder_name in i['Key']:
-            myDict[folder_name].append(i['Key'])
+            myDict[folder_name].append({'Key': i['Key'], 'Size': i['Size'], 'LastModified': i['LastModified']})
 
     folder_list.pop(0)
     print(folder_list)

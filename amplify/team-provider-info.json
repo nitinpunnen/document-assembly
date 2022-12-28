@@ -41,7 +41,11 @@
         },
         "assemblrListBucket": {
           "deploymentBucketName": "amplify-documentassembly-dev-203749-deployment",
-          "s3Key": "amplify-builds/assemblrListBucket-3679532b71344d44772b-build.zip"
+          "s3Key": "amplify-builds/assemblrListBucket-7869533962547551746f-build.zip"
+        },
+        "assemblrAddFolder": {
+          "deploymentBucketName": "amplify-documentassembly-dev-203749-deployment",
+          "s3Key": "amplify-builds/assemblrAddFolder-75456648584470707a7a-build.zip"
         }
       }
     }

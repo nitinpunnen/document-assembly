@@ -15,7 +15,8 @@ const Home = () => {
             <Flex direction={{base: 'row', large: 'row'}} className="video-container">
                 <div className="intro">
                     <Heading level={1} className="heading">Assemblr - PoC</Heading>
-                    <span className="short-desc">Powerful search engine build on machine learning capabilities to provide you the contextual results you are searching for. </span>
+                    <span className="short-desc">Automate the creation of your operational and technical documents without any technical expertise. </span>
+                    <span className="short-desc">Powerful search engine build on machine learning capabilities to provide accurate contextual results. </span>
                 </div>
             </Flex>
             <hr/>
@@ -24,22 +25,22 @@ const Home = () => {
                 width="70%"
                 style={{alignItems: "center", padding: "40px", margin: "0 auto", justifyContent: "space-between"}}
             >
-                <Link to="/searchDocs">
+                <Link to="/assemble">
+                    <Card borderRadius="medium"
+                          maxWidth="20rem"
+                          variation="outlined">
+                        <FontAwesomeIcon icon={faDiagramProject} size="2x" color="#22577A"/>
+                        <Heading level={5}>Document Assembly</Heading>
+                        <Text>Turn Word or PDF templates into automated workflows. Interactively build even your most complex documents within minutes.</Text>
+                    </Card>
+                </Link>
+                <Link to="/auditCompliance">
                     <Card borderRadius="medium"
                           maxWidth="20rem"
                           variation="outlined">
                         <FontAwesomeIcon icon={faSearch} size="2x" color="#22577A"/>
                         <Heading level={5}>Search Documents</Heading>
                         <Text>Unified search experience across multiple structured and unstructured content repositories. Use natural language processing (NLP) to get highly accurate answers</Text>
-                    </Card>
-                </Link>
-                <Link to="/searchEntities">
-                    <Card borderRadius="medium"
-                          maxWidth="20rem"
-                          variation="outlined">
-                        <FontAwesomeIcon icon={faDiagramProject} size="2x" color="#22577A"/>
-                        <Heading level={5}>Search Entities</Heading>
-                        <Text>Search for your enterprise entities in a fast, reliable, fully managed graph database service that work with highly connected datasets.</Text>
                     </Card>
                 </Link>
                 <Link to="/uploadFiles">

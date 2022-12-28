@@ -47,15 +47,49 @@
 
 .bucket-detail-card {
     width: 25% !important;
-    max-width: 25%;
+    max-width: 20%;
 }
 
 .folder-objects-card {
-    width: 45% !important;
-    max-width: 45%;
+    width: 55% !important;
+    max-width: 55%;
 }
 
 .object-attrs-card {
-    width: 30% !important;
-    max-width: 30%;
+    width: 25% !important;
+    max-width: 25%;
+}
+
+.attribute-table {
+    width: 100%;
+}
+
+.attribute-table td:first-child {
+    width: 40%;
+    text-align: right;
+    font-size: 0.8em;
+    font-weight: 700;
+    padding-right: 5px;
+}
+
+.attribute-table td:last-child {
+    width: 60%;
+    text-align: left;
+    font-size: 0.8em;
+}
+
+.MuiInputBase-input {
+    padding: 0 5px !important;
+    font-size: 0.8em !important;
+}
+
+.amplify-expander {
+    border: 1px solid lightgray;
+    box-shadow: none;
+}
+
+.amplify-expander__header {
+    font-size: 0.8em !important;
+    color: #232F3E;
+    font-weight: 700;
 }
