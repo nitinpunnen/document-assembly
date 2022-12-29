@@ -1,19 +1,22 @@
 
 
 package example;
-        
-     public class ResponseClass {
-        String greetings;
 
-        public String getGreetings() {
-            return this.greetings;
-        }
+import java.net.URL;
+import java.util.List;
 
-        public void setGreetings(String greetings) {
-            this.greetings = greetings;
-        }
-
-        public ResponseClass(String greetings) {
-            this.greetings = greetings;
-        }
+public class ResponseClass {
+    public List<URL> getUrls() {
+        return urls;
     }
+
+    public void setUrls(List<URL> urls) {
+        this.urls = urls;
+    }
+
+    List<URL> urls;
+
+    public ResponseClass(List<URL> urls) {
+        this.urls = urls;
+    }
+}

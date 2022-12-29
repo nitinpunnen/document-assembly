@@ -39,7 +39,7 @@ const Home = () => {
                           maxWidth="20rem"
                           variation="outlined">
                         <FontAwesomeIcon icon={faSearch} size="2x" color="#22577A"/>
-                        <Heading level={5}>Search Documents</Heading>
+                        <Heading level={5}>Audit & Compliance</Heading>
                         <Text>Unified search experience across multiple structured and unstructured content repositories. Use natural language processing (NLP) to get highly accurate answers</Text>
                     </Card>
                 </Link>

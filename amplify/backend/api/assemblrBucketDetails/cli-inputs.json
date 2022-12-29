@@ -35,6 +35,27 @@
       "permissions": {
         "setting": "open"
       }
+    },
+    "/assemblr/readWordDoc": {
+      "name": "/assemblr/readWordDoc",
+      "lambdaFunction": "readWordDocument",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/assemblr/readPdfDoc": {
+      "name": "/assemblr/readPdfDoc",
+      "lambdaFunction": "readPdfDocument",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/assemblr/signedUrl": {
+      "name": "/assemblr/signedUrl",
+      "lambdaFunction": "generatePresignedUrl",
+      "permissions": {
+        "setting": "open"
+      }
     }
   }
 }

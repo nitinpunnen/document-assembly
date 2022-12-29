@@ -85,6 +85,30 @@
             "Name",
             "Arn"
           ]
+        },
+        {
+          "category": "function",
+          "resourceName": "readWordDocument",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "readPdfDocument",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "generatePresignedUrl",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
         }
       ]
     }
@@ -123,6 +147,16 @@
       "service": "Lambda"
     },
     "assemblrAddFolder": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "readPdfDocument": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "generatePresignedUrl": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"

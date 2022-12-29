@@ -25,7 +25,7 @@
       "function": {
         "readWordDocument": {
           "deploymentBucketName": "amplify-documentassembly-dev-203749-deployment",
-          "s3Key": "amplify-builds/readWordDocument-3075354352544f496341-build.zip"
+          "s3Key": "amplify-builds/readWordDocument-306e315861565a796b32-build.zip"
         },
         "assemblrGetObjectMetadata": {
           "deploymentBucketName": "amplify-documentassembly-dev-203749-deployment",
@@ -46,6 +46,14 @@
         "assemblrAddFolder": {
           "deploymentBucketName": "amplify-documentassembly-dev-203749-deployment",
           "s3Key": "amplify-builds/assemblrAddFolder-75456648584470707a7a-build.zip"
+        },
+        "readPdfDocument": {
+          "deploymentBucketName": "amplify-documentassembly-dev-203749-deployment",
+          "s3Key": "amplify-builds/readPdfDocument-3075354352544f496341-build.zip"
+        },
+        "generatePresignedUrl": {
+          "deploymentBucketName": "amplify-documentassembly-dev-203749-deployment",
+          "s3Key": "amplify-builds/generatePresignedUrl-3075354352544f496341-build.zip"
         }
       }
     }
