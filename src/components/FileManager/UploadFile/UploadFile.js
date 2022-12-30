@@ -10,38 +10,27 @@ import {
     TextField,
     View,
 } from '@aws-amplify/ui-react';
-import {
-    createArtifact as createArtifactMutation
-} from "../../../graphql/mutations";
-import { FileUploader } from "react-drag-drop-files";
+
+import {FileUploader} from "react-drag-drop-files";
 
 const UploadFile = (props) => {
     const [files, setFiles] = useState([]);
 
     async function uploadFiles(event) {
+        console.log("In uploadFiles ", props)
         event.preventDefault();
         for (const item of files) {
             const itemDepartment = item.department != null ? item.department : 'Corporate';
             const itemClassification = item.classification != null ? item.classification : 'None';
-            let itemFilename;
-            if (itemClassification === 'None') itemFilename = itemDepartment + "/" + item.name;
-            else itemFilename = itemDepartment + "/" + itemClassification + "/" + item.name;
 
             const data = {
                 name: item.documentName == null ? item.name : item.documentName,
-                description: item.description != null ? item.description : 'Anycompany Artifact',
+                description: item.description != null ? item.description : item.name,
                 department: itemDepartment,
                 classification: itemClassification,
-                fileName: itemFilename,
+                fileName: props.folderName + "/" + item.name,
             };
-            try {
-                await API.graphql({
-                    query: createArtifactMutation,
-                    variables: {input: data},
-                });
-            } catch (error) {
-                console.error(error);
-            }
+            console.log("Going to upload ", data)
             if (!!data.fileName) {
                 try {
                     const result = await Storage.put(data.fileName, item, {
@@ -166,7 +155,7 @@ const UploadFile = (props) => {
                                         name="description"
                                         placeholder="Add a short description"
                                         label="Short Description"
-                                        defaultValue="AnyCompany Artifact"
+                                        defaultValue={item.name}
                                         labelHidden
                                         variation="quiet"
                                         onBlur={(e) => item.description = e.target.value}

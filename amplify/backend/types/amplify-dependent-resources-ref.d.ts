@@ -29,12 +29,6 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "function": {
-        "readWordDocument": {
-            "Name": "string",
-            "Arn": "string",
-            "Region": "string",
-            "LambdaExecutionRole": "string"
-        },
         "assemblrGetObjectMetadata": {
             "Name": "string",
             "Arn": "string",
@@ -65,13 +59,13 @@ export type AmplifyDependentResourcesAttributes = {
             "Region": "string",
             "LambdaExecutionRole": "string"
         },
-        "readPdfDocument": {
+        "getDocumentSignedURL": {
             "Name": "string",
             "Arn": "string",
             "Region": "string",
             "LambdaExecutionRole": "string"
         },
-        "generatePresignedUrl": {
+        "extractPdfDocument": {
             "Name": "string",
             "Arn": "string",
             "Region": "string",

@@ -20,7 +20,7 @@ const AuditProgram = () => {
         setOpen(false);
     };
 
-    const handleDialogClose = () => {
+    const handleSelectedDocuments = () => {
         setOpen(false);
         const selectedDocuments = childRef.current.getSelectedDocuments();
         console.log("Audit Program ", selectedDocuments);
@@ -39,12 +39,12 @@ const AuditProgram = () => {
                 </Button>
             </Flex>
             <Dialog open={open} onClose={handleClose} fullWidth={true} maxWidth={'lg'}>
-                <DialogTitle>Upload Files</DialogTitle>
+                <DialogTitle>Select Files</DialogTitle>
                 <DialogContent>
                     <SelectS3Objects ref={childRef}/>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleDialogClose}>Ok</Button>
+                    <Button onClick={handleSelectedDocuments}>Ok</Button>
                 </DialogActions>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>

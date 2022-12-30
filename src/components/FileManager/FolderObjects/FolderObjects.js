@@ -11,12 +11,15 @@ import {Storage} from "aws-amplify";
 const FolderObjects = forwardRef((props, ref) => {
     useImperativeHandle(ref, () => ({
         updateDocuments(files, folderName) {
-            console.log("child function ", folderName);
             if(files[folderName]) {
+                const documents = [];
                 files[folderName].map((document, index) => {
-                    document.id = index;
+                    if(!document.Key.includes('metadata.json')) {
+                        document.id = index;
+                        documents.push(document);
+                    }
                 })
-                setDocuments(files[folderName]);
+                setDocuments(documents);
                 setFolderName(folderName);
             }
         }
@@ -39,11 +42,14 @@ const FolderObjects = forwardRef((props, ref) => {
     };
 
     const handleRowClick = (event) => {
-        console.log("Hello ", event.row.Key)
+        console.log("Hello ", event.row.Key);
+        props.onDocumentSelected(event.row.Key);
     };
 
-    const onUploadComplete = () => {
+    async function onUploadComplete() {
         setOpen(false);
+        await props.onFilesUploaded();
+        setDocuments(props.allfiles[folderName]);
     }
 
     async function deleteNote({id, fileName}) {
@@ -56,7 +62,7 @@ const FolderObjects = forwardRef((props, ref) => {
             direction={{base: 'column', large: 'column'}}>
             <Flex
                 direction={{base: 'row'}} width="100%" className='card-header'>
-                <Text style={{flexGrow: 3, color: "#1a1a1a", fontSize: "16px", padding: "0 10px"}}>Documents</Text>
+                <Text style={{flexGrow: 3, color: "#1a1a1a", fontSize: "16px", padding: "0 10px"}}>Documents - {folderName}</Text>
                 <Button variation="link" className='card-button' onClick={handleClickOpen}>
                     <FontAwesomeIcon icon={faUpload} color="#1a1a1a"/>
                     <span>Upload</span>
@@ -68,7 +74,7 @@ const FolderObjects = forwardRef((props, ref) => {
                 <Dialog open={open} onClose={handleClose} fullWidth={true} maxWidth={'xl'}>
                     <DialogTitle>Upload Files</DialogTitle>
                     <DialogContent>
-                        <UploadFile onUploadComplete={() => onUploadComplete()}/>
+                        <UploadFile folderName={folderName} onUploadComplete={() => onUploadComplete()}/>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleClose}>Cancel</Button>
@@ -81,7 +87,8 @@ const FolderObjects = forwardRef((props, ref) => {
                         pageSize={5}
                         rowsPerPageOptions={[5]}
                         checkboxSelection
-                        onRowClick={(event) => handleRowClick(event)}
+                        disableSelectionOnClick={true}
+                        onRowClick={handleRowClick}
                     />
                 </div>}
             </Flex>

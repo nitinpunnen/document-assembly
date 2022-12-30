@@ -2,3 +2,7 @@
     height: 100px !important;
     min-width: 400px !important;
 }
+
+.upload-table th, .upload-table td, .upload-table .amplify-input, .upload-table select {
+    font-size: 0.8em !important;
+}

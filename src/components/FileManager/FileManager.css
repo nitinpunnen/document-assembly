@@ -83,6 +83,10 @@
     font-size: 0.8em !important;
 }
 
+.MuiTreeItem-label {
+    font-size: 0.8em !important;
+}
+
 .amplify-expander {
     border: 1px solid lightgray;
     box-shadow: none;

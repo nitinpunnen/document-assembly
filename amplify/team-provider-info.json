@@ -23,10 +23,6 @@
         "gamadocumentassembly": {}
       },
       "function": {
-        "readWordDocument": {
-          "deploymentBucketName": "amplify-documentassembly-dev-203749-deployment",
-          "s3Key": "amplify-builds/readWordDocument-306e315861565a796b32-build.zip"
-        },
         "assemblrGetObjectMetadata": {
           "deploymentBucketName": "amplify-documentassembly-dev-203749-deployment",
           "s3Key": "amplify-builds/assemblrGetObjectMetadata-4f304151534c5a73527a-build.zip"
@@ -41,19 +37,19 @@
         },
         "assemblrListBucket": {
           "deploymentBucketName": "amplify-documentassembly-dev-203749-deployment",
-          "s3Key": "amplify-builds/assemblrListBucket-7869533962547551746f-build.zip"
+          "s3Key": "amplify-builds/assemblrListBucket-445034366c6c4a557850-build.zip"
         },
         "assemblrAddFolder": {
           "deploymentBucketName": "amplify-documentassembly-dev-203749-deployment",
           "s3Key": "amplify-builds/assemblrAddFolder-75456648584470707a7a-build.zip"
         },
-        "readPdfDocument": {
+        "getDocumentSignedURL": {
           "deploymentBucketName": "amplify-documentassembly-dev-203749-deployment",
-          "s3Key": "amplify-builds/readPdfDocument-3075354352544f496341-build.zip"
+          "s3Key": "amplify-builds/getDocumentSignedURL-784569594e6570655978-build.zip"
         },
-        "generatePresignedUrl": {
+        "extractPdfDocument": {
           "deploymentBucketName": "amplify-documentassembly-dev-203749-deployment",
-          "s3Key": "amplify-builds/generatePresignedUrl-3075354352544f496341-build.zip"
+          "s3Key": "amplify-builds/extractPdfDocument-4e70445630732b574358-build.zip"
         }
       }
     }

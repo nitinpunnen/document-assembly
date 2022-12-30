@@ -31,14 +31,13 @@ const BucketDetails = (props) => {
     };
 
     const handleSelect = (event, nodeIds) => {
-        console.log(nodeIds)
         setSelected(nodeIds);
         props.onFolderSelected(nodeIds);
     };
 
     const handleExpandClick = () => {
         setExpanded((oldExpanded) =>
-            oldExpanded.length === 0 ? ['public'] : [],
+            oldExpanded.length === 0 ? ['public', 'Engineering', 'Finance', 'Quality', 'Human Resources', "Marketing", "Creative Services"] : [],
         );
     };
 
@@ -121,14 +120,13 @@ const BucketDetails = (props) => {
     return (
         <Flex
             direction={{base: 'column', large: 'column'}}>
-            <Dialog open={open} onClose={handleClose} maxWidth={'md'}>
-                <DialogTitle>Upload Files</DialogTitle>
+            <Dialog open={open} onClose={handleClose} fullWidth={true} maxWidth={'sm'}>
+                <DialogTitle>Add Folders</DialogTitle>
                 <DialogContent>
                     <TextField
                         autoFocus
                         margin="dense"
                         id="folderName"
-                        label="Folder Name"
                         type="text"
                         fullWidth
                         variant="standard"
@@ -165,7 +163,7 @@ const BucketDetails = (props) => {
                     selected={selected}
                     onNodeToggle={handleToggle}
                     onNodeSelect={handleSelect}
-                    sx={{height: 264, flexGrow: 1, maxWidth: 400, overflowY: 'auto'}}
+                    sx={{height: 404, flexGrow: 1, maxWidth: 400, overflowY: 'auto'}}
                 >
                     {renderTree(data)}
                 </TreeView>}

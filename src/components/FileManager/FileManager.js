@@ -7,25 +7,21 @@ import {
     Flex,
     Text,
 } from '@aws-amplify/ui-react';
-import {listArtifacts} from "../../graphql/queries";
-import {
-    deleteArtifact as deleteArtifactMutation,
-} from "../../graphql/mutations"
 import {faRotate} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import BucketDetails from "./BucketDetails/BucketDetails";
 import FolderObjects from "./FolderObjects/FolderObjects";
-import ObjectAttribtutes from "./ObjectAttributes/ObjectAttribtutes";
+import ObjectAttributes from "./ObjectAttributes/ObjectAttributes";
 
 const FileManager = () => {
     let [folders, setFolders] = useState([]);
     let [files, setFiles] = useState([]);
     // let [showUpload, setShowUpload] = useState(false)
 
-    const ref = useRef();
+    const folderRef = useRef();
+    const documentRef = useRef();
 
     useEffect(() => {
-        console.log("In useEffect")
         fetchDocuments();
     }, []);
 
@@ -33,9 +29,17 @@ const FileManager = () => {
         fetchDocuments();
     }
 
+    const onFilesUploaded = () => {
+        fetchDocuments();
+    }
+
     const onFolderSelected = (selected) => {
-        console.log('FileManager selected ', selected)
-        ref.current.updateDocuments(files, selected);
+        folderRef.current.updateDocuments(files, selected);
+    }
+
+    const onDocumentSelected = (selected) => {
+        console.log("onDocumentSelected ", selected)
+        documentRef.current.updateMetadata(selected);
     }
 
     async function fetchDocuments() {
@@ -43,9 +47,7 @@ const FileManager = () => {
             headers: {},
             response: true
         });
-        console.log(response);
         const folders = response.data.folders;
-        console.log(folders);
         const files = response.data.files;
         setFiles(files);
         setFolders(folders)
@@ -72,10 +74,13 @@ const FileManager = () => {
                     <BucketDetails treeViewData={folders} onFolderAdded={() => onFolderAdded()} onFolderSelected={(selected) => onFolderSelected(selected)}/>
                 </Card>
                 <Card className='file-manager-card folder-objects-card'>
-                    <FolderObjects ref={ref}/>
+                    <FolderObjects ref={folderRef}
+                                   allfiles={files}
+                                   onFilesUploaded={() => onFilesUploaded()}
+                                   onDocumentSelected={(selected) => onDocumentSelected(selected)}/>
                 </Card>
                 <Card className='file-manager-card object-attrs-card'>
-                    <ObjectAttribtutes/>
+                    <ObjectAttributes ref={documentRef} />
                 </Card>
             </Flex>
 

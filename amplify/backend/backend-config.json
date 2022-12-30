@@ -88,7 +88,7 @@
         },
         {
           "category": "function",
-          "resourceName": "readWordDocument",
+          "resourceName": "getDocumentSignedURL",
           "attributes": [
             "Name",
             "Arn"
@@ -96,15 +96,7 @@
         },
         {
           "category": "function",
-          "resourceName": "readPdfDocument",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        },
-        {
-          "category": "function",
-          "resourceName": "generatePresignedUrl",
+          "resourceName": "extractPdfDocument",
           "attributes": [
             "Name",
             "Arn"
@@ -121,11 +113,6 @@
     }
   },
   "function": {
-    "readWordDocument": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
     "assemblrGetObjectMetadata": {
       "build": true,
       "providerPlugin": "awscloudformation",
@@ -151,12 +138,12 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
-    "readPdfDocument": {
+    "getDocumentSignedURL": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
-    "generatePresignedUrl": {
+    "extractPdfDocument": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"

@@ -17,6 +17,8 @@ def lambda_handler(event, context):
     myDict = {}
 
     for i in object_list['Contents']:
+        # if 'metadata.json' in i['Key']:
+        #     continue
         if i['Size'] == 0:
             folder_name = i['Key'].replace('public/', '').rstrip('/')
             folder_list.append(folder_name)
