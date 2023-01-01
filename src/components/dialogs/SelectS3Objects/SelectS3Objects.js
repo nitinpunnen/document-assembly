@@ -36,10 +36,14 @@ const SelectS3Objects = forwardRef((props, ref) => {
 
     const handleSelect = (event, nodeIds) => {
         setSelected(nodeIds);
-        const documents = files[nodeIds];
-        if(documents) {
-            documents.map((document, index) => {
-                document.id = index;
+        const allDocuments = files[nodeIds];
+        if(allDocuments) {
+            const documents = [];
+            allDocuments.map((document, index) => {
+                if(!document.Key.includes('metadata.json')) {
+                    document.id = index;
+                    documents.push(document);
+                }
             })
             setDocuments(documents);
             setFolderName(folderName);
@@ -48,7 +52,7 @@ const SelectS3Objects = forwardRef((props, ref) => {
 
     const handleExpandClick = () => {
         setExpanded((oldExpanded) =>
-            oldExpanded.length === 0 ? ['public'] : [],
+            oldExpanded.length === 0 ? ['public', 'Engineering', 'Finance', 'Quality', 'Human Resources', "Marketing", "Creative Services"] : [],
         );
     };
 

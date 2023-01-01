@@ -1,0 +1,13 @@
+.editor-pane {
+    min-height: 360px;
+}
+
+.wrapper-class {
+    min-height: 340px;
+}
+
+.editor-class {
+    min-height: 330px;
+    background-color: white;
+    border: 1px solid #F1EEEE;
+}

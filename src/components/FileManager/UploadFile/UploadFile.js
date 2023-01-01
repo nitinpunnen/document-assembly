@@ -10,6 +10,10 @@ import {
     TextField,
     View,
 } from '@aws-amplify/ui-react';
+import {
+    createArtifact as createArtifactMutation,
+    deleteArtifact as deleteArtifactMutation,
+} from "../../../graphql/mutations"
 
 import {FileUploader} from "react-drag-drop-files";
 
@@ -30,6 +34,10 @@ const UploadFile = (props) => {
                 classification: itemClassification,
                 fileName: props.folderName + "/" + item.name,
             };
+            await API.graphql({
+                query: createArtifactMutation,
+                variables: {input: data},
+            });
             console.log("Going to upload ", data)
             if (!!data.fileName) {
                 try {

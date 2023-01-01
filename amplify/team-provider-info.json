@@ -50,6 +50,14 @@
         "extractPdfDocument": {
           "deploymentBucketName": "amplify-documentassembly-dev-203749-deployment",
           "s3Key": "amplify-builds/extractPdfDocument-4e70445630732b574358-build.zip"
+        },
+        "fetchDocumentFromDatabase": {
+          "deploymentBucketName": "amplify-documentassembly-dev-203749-deployment",
+          "s3Key": "amplify-builds/fetchDocumentFromDatabase-71666265704646686830-build.zip"
+        },
+        "assemblrCallTextract": {
+          "deploymentBucketName": "amplify-documentassembly-dev-203749-deployment",
+          "s3Key": "amplify-builds/assemblrCallTextract-423231624d7469754152-build.zip"
         }
       }
     }

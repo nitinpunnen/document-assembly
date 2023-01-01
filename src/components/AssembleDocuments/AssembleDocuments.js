@@ -1,16 +1,22 @@
 import React, {useState} from 'react';
 import './AssembleDocuments.css';
-import {EditorState} from 'draft-js';
-import {Editor} from 'react-draft-wysiwyg';
-import {Flex, Text} from "@aws-amplify/ui-react";
-import 'draft-js/dist/Draft.css';
-import '@draft-js-plugins/inline-toolbar/lib/plugin.css';
+import {Button, Flex, Text} from "@aws-amplify/ui-react";
+import {Dialog, DialogActions, DialogContent, DialogTitle} from "@mui/material";
+import EditTextContent from "../dialogs/EditTextContent/EditTextContent";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faFileCircleCheck} from "@fortawesome/free-solid-svg-icons";
 
 const AssembleDocuments = () => {
 
-    const [docEditorState, setDocEditorState] = useState(
-        () => EditorState.createEmpty(),
-    );
+    const [open, setOpen] = useState(false);
+
+    const handleEditedContent = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
         <Flex
@@ -19,16 +25,31 @@ const AssembleDocuments = () => {
             width="80%"
             style={{display: "block", margin: "10px auto"}}
         >
+            <Dialog open={open} onClose={handleClose} fullWidth={true} maxWidth={'lg'}>
+                <DialogTitle>Edit Content</DialogTitle>
+                <DialogContent>
+                    <EditTextContent/>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleEditedContent}>Ok</Button>
+                    <Button onClick={handleClose}>Cancel</Button>
+                </DialogActions>
+            </Dialog>
             <Text style={{flexGrow: 3, color: "#F56600", fontSize: "24px"}}>Assemble Documents</Text>
-            <div className='editor-pane'>
-                <Editor
-                    editorState={docEditorState}
-                    onEditorStateChange={setDocEditorState}
-                    wrapperClassName="wrapper-class"
-                    editorClassName="editor-class"
-                    toolbarClassName="toolbar-class"
-                />
-            </div>
+            <Button variation="link" className='card-button' onClick={handleEditedContent}>
+                <FontAwesomeIcon icon={faFileCircleCheck} color="#1a1a1a"/>
+                <span>Select</span>
+            </Button>
+            <Flex
+                direction={{base: 'row', large: 'row'}} width="100%" minHeight="600px">
+                <Flex
+                    direction={{base: 'row'}} width="40%">
+
+                </Flex>
+                <Flex
+                    direction={{base: 'row'}} width="60%" style={{border: "1px solid lightgrey"}}>
+                </Flex>
+            </Flex>
         </Flex>
     );
 };

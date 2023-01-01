@@ -30,7 +30,7 @@ const AuditCompliance = () => {
                     <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
                         <TabList onChange={handleChange} aria-label="lab API tabs example" centered>
                             <Tab label="Search Documents" value="1"/>
-                            <Tab label="Global Audit Program" value="2"/>
+                            <Tab label="Audit Document" value="2"/>
                             <Tab label="Document Scan" value="3"/>
                         </TabList>
                     </Box>

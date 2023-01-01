@@ -101,6 +101,22 @@
             "Name",
             "Arn"
           ]
+        },
+        {
+          "category": "function",
+          "resourceName": "fetchDocumentFromDatabase",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "assemblrCallTextract",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
         }
       ]
     }
@@ -144,6 +160,16 @@
       "service": "Lambda"
     },
     "extractPdfDocument": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "fetchDocumentFromDatabase": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "assemblrCallTextract": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"

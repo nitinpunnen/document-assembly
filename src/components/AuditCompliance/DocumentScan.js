@@ -46,15 +46,15 @@ const DocumentScan = () => {
             width="100%">
             <Flex
                 direction={{base: 'row'}} width="100%">
-                <Text style={{flexGrow: 3, color: "#1a1a1a", fontSize: "16px", padding: "0 10px"}}>Documents</Text>
+                <Text style={{color: "#1a1a1a", fontSize: "16px", padding: "0 10px"}}>Select the file that you want to open and scan</Text>
                 <Button variation="link" className='card-button' onClick={handleClickOpen}>
                     <FontAwesomeIcon icon={faFileCircleCheck} color="#1a1a1a"/>
                     <span>Select</span>
                 </Button>
             </Flex>
-            {signedUrl && <iframe className="doc" height='800px'
-                    src={signedUrl}></iframe>}
-            <embed src="https://www.africau.edu/images/default/sample.pdf" width="500" height="375"
+            {/*{signedUrl && <iframe className="doc" height='800px'*/}
+            {/*        src={signedUrl}></iframe>}*/}
+            <embed src={signedUrl} width="100%" height="800"
                    type="application/pdf"></embed>
             <Dialog open={open} onClose={handleClose} fullWidth={true} maxWidth={'lg'}>
                 <DialogTitle>Select Files</DialogTitle>
@@ -63,8 +63,6 @@ const DocumentScan = () => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleSelectedDocuments}>Ok</Button>
-                </DialogActions>
-                <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
                 </DialogActions>
             </Dialog>

@@ -49,6 +49,20 @@
       "permissions": {
         "setting": "open"
       }
+    },
+    "/assemblr/fetchContent": {
+      "name": "/assemblr/fetchContent",
+      "lambdaFunction": "fetchDocumentFromDatabase",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/assemblr/callTextract": {
+      "name": "/assemblr/callTextract",
+      "lambdaFunction": "assemblrCallTextract",
+      "permissions": {
+        "setting": "open"
+      }
     }
   }
 }
