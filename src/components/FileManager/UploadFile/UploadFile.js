@@ -12,7 +12,6 @@ import {
 } from '@aws-amplify/ui-react';
 import {
     createArtifact as createArtifactMutation,
-    deleteArtifact as deleteArtifactMutation,
 } from "../../../graphql/mutations"
 
 import {FileUploader} from "react-drag-drop-files";
@@ -32,31 +31,36 @@ const UploadFile = (props) => {
                 description: item.description != null ? item.description : item.name,
                 department: itemDepartment,
                 classification: itemClassification,
-                fileName: props.folderName + "/" + item.name,
+                fileName: props.folderName + "/" + item.name
             };
             await API.graphql({
                 query: createArtifactMutation,
                 variables: {input: data},
             });
-            console.log("Going to upload ", data)
             if (!!data.fileName) {
                 try {
+                    const origFileName = data.fileName;
                     const result = await Storage.put(data.fileName, item, {
-                        metadata: data,
                         contentType: item.type
                     });
                     const documentId = 's3://documentassembly-gama-landingzone203749-dev/public/' + result.key
+                    data.fileName = 'public/' + data.fileName;
+                    data.s3_document_id = documentId;
+                    data._language_code =  "en";
+
                     const metadataJson = {
-                        "DocumentId": documentId, "Attributes": {
-                            "s3_document_id": documentId,
-                            "_language_code": "en",
-                            "department": itemDepartment,
-                            "classification": itemClassification
-                        }
+                        "EventType": "NewDocument", "DocumentId": documentId, "Attributes": data
                     }
-                    // Bad Code. But this is a demo
+                    console.log("metadataJson ", metadataJson);
                     try {
-                        await Storage.put(data.fileName + '.metadata.json', metadataJson);
+                        await Storage.put(origFileName + '.metadata.json', metadataJson);
+                        await API.post('assemblrBucketDetails', '/assemblr/updateMetadata', {
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            response: true,
+                            body: metadataJson
+                        });
                     } catch (error) {
                         console.error(error);
                     }

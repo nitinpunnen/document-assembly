@@ -42,14 +42,13 @@ const FolderObjects = forwardRef((props, ref) => {
     };
 
     const handleRowClick = (event) => {
-        console.log("Hello ", event.row.Key);
         props.onDocumentSelected(event.row.Key);
     };
 
     async function onUploadComplete() {
         setOpen(false);
         await props.onFilesUploaded();
-        setDocuments(props.allfiles[folderName]);
+        // setDocuments(props.allfiles[folderName]);
     }
 
     async function deleteNote({id, fileName}) {

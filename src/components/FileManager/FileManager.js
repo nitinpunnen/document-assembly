@@ -38,7 +38,6 @@ const FileManager = () => {
     }
 
     const onDocumentSelected = (selected) => {
-        console.log("onDocumentSelected ", selected)
         documentRef.current.updateMetadata(selected);
     }
 

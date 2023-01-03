@@ -1,13 +1,36 @@
-.App-header {
-    background-color: #282c34;
-    min-height: 5vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-    margin-bottom: 5vh;
-    text-align: center;
-    padding: 12px;
+.editor-pane {
+    min-height: 360px;
+}
+
+.wrapper-class {
+    min-height: 340px;
+}
+
+.editor-class {
+    min-height: 330px;
+    background-color: white;
+    border: 1px solid #F1EEEE;
+}
+
+.amplify-field, .amplify-input {
+    font-size: 0.9em;
+    padding: 1px 6px;
+}
+
+.amplify-select {
+    font-size: 0.9em;
+}
+
+.amplify-expander {
+    border-radius: 0;
+    border: 0px;
+    background-color: #f9f9f9;
+}
+
+pre {
+    font-family: inherit;
+    white-space: pre-wrap;            /* css-3 */
+    white-space: -moz-pre-wrap !important;   /* Mozilla */
+    white-space: -o-pre-wrap;      /* Opera 7 */
+    word-wrap: break-word !important;         /* Internet Explorer 5.5+ */
 }

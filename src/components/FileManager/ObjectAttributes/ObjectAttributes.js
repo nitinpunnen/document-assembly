@@ -3,18 +3,43 @@ import {Button, Expander, ExpanderItem, Flex, Text} from "@aws-amplify/ui-react"
 import {TextField} from "@mui/material";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSave} from "@fortawesome/free-solid-svg-icons";
-import {forwardRef, useImperativeHandle} from "react";
+import {forwardRef, useImperativeHandle, useState} from "react";
+import {API} from "aws-amplify";
 
 const ObjectAttributes = forwardRef((props, documentRef) => {
 
+    let [docProps, setDocProps] = useState({});
+
     useImperativeHandle(documentRef, () => ({
-        updateMetadata(selectedDocument) {
-            console.log('ObjectAttributes ', selectedDocument)
+        async updateMetadata(selectedDocument) {
+            const response = await API.post('assemblrBucketDetails', '/assemblr/objectMetadata', {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                response: true,
+                body: {filename: selectedDocument}
+            });
+            // console.log(response)
+            const docProps = response.data.result.Attributes;
+            setDocProps(docProps)
         }
     }));
 
-    const handleClickSave = (event) => {
-        console.log("Hello ")
+    const handleFormEdit = (event) => {
+        setDocProps({...docProps, [event.target.name] : event.target.value});
+    }
+
+    async function handleClickSave() {
+        const metadataJson = {
+            "EventType": "UpdateAttributes", "Attributes": docProps
+        }
+        await API.post('assemblrBucketDetails', '/assemblr/updateMetadata', {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            response: true,
+            body: metadataJson
+        });
     };
 
     return (
@@ -31,33 +56,33 @@ const ObjectAttributes = forwardRef((props, documentRef) => {
             <Flex
                 direction={{base: 'column', large: 'column'}}
                 style={{padding: "10px"}}>
-                <Expander type="single">
+                <Expander type="single" isCollapsible={true}>
                     <ExpanderItem title="Properties" value="demo-item-1">
                         <table className='attribute-table'>
                             <tbody>
                             <tr>
+                                <td>Document Title</td>
+                                <td><TextField name="name" value={docProps.name} onChange={handleFormEdit}/></td>
+                            </tr>
+                            <tr>
                                 <td>Author</td>
-                                <td><TextField value='Mary Jane' disabled/></td>
+                                <td><TextField name="author" value={docProps.author} onChange={handleFormEdit}/></td>
                             </tr>
                             <tr>
                                 <td>Category</td>
-                                <td><TextField value='Engineering'/></td>
+                                <td><TextField name="category" value={docProps.category} onChange={handleFormEdit}/></td>
                             </tr>
                             <tr>
                                 <td>Created At</td>
-                                <td><TextField value='Engineering' disabled/></td>
+                                <td><TextField name="createdAt" value={docProps.createdAt} onChange={handleFormEdit} disabled/></td>
                             </tr>
                             <tr>
                                 <td>Data Source</td>
-                                <td><TextField value='Engineering'/></td>
-                            </tr>
-                            <tr>
-                                <td>Document Title</td>
-                                <td><TextField value='Engineering'/></td>
+                                <td><TextField name="dataSource" value={docProps.dataSource} onChange={handleFormEdit}/></td>
                             </tr>
                             <tr>
                                 <td>Language Code</td>
-                                <td><TextField value='en' disabled/></td>
+                                <td><TextField name="_language_code" value={docProps._language_code} onChange={handleFormEdit} disabled/></td>
                             </tr>
                             </tbody>
                         </table>
@@ -67,27 +92,19 @@ const ObjectAttributes = forwardRef((props, documentRef) => {
                             <tbody>
                             <tr>
                                 <td>Department</td>
-                                <td><TextField value='Engineering'/></td>
+                                <td><TextField name="department" value={docProps.department} onChange={handleFormEdit}/></td>
                             </tr>
                             <tr>
                                 <td>Commercial Item</td>
-                                <td>Mary Jane</td>
+                                <td><TextField name="commercialItem" value={docProps.commercialItem} onChange={handleFormEdit}/></td>
                             </tr>
                             <tr>
                                 <td>Event</td>
-                                <td>Mary Jane</td>
+                                <td><TextField name="event" value={docProps.event} onChange={handleFormEdit}/></td>
                             </tr>
                             <tr>
-                                <td>Data Source</td>
-                                <td>Mary Jane</td>
-                            </tr>
-                            <tr>
-                                <td>Document Title</td>
-                                <td>Mary Jane</td>
-                            </tr>
-                            <tr>
-                                <td>Language Code</td>
-                                <td>Mary Jane</td>
+                                <td>Accounting Group</td>
+                                <td><TextField name="accountingGroup" value={docProps.accountingGroup} onChange={handleFormEdit}/></td>
                             </tr>
                             </tbody>
                         </table>
@@ -100,19 +117,19 @@ const ObjectAttributes = forwardRef((props, documentRef) => {
                             <tbody>
                             <tr>
                                 <td>Classification</td>
-                                <td>Mary Jane</td>
+                                <td><TextField name="classification" value={docProps.classification} onChange={handleFormEdit}/></td>
                             </tr>
                             <tr>
                                 <td>ITAR ?</td>
-                                <td>No</td>
+                                <td><TextField name="itar" value={docProps.itar} onChange={handleFormEdit}/></td>
                             </tr>
                             <tr>
                                 <td>PCI</td>
-                                <td>No</td>
+                                <td><TextField name="pci" value={docProps.pci} onChange={handleFormEdit}/></td>
                             </tr>
                             <tr>
                                 <td>HIPAA ?</td>
-                                <td>No</td>
+                                <td><TextField name="hipaa" value={docProps.hipaa} onChange={handleFormEdit}/></td>
                             </tr>
                             </tbody>
                         </table>
