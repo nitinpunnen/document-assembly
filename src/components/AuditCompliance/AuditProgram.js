@@ -8,6 +8,7 @@ import {Box, Dialog, DialogActions, DialogContent, DialogTitle, Tab} from "@mui/
 import {TabContext, TabList, TabPanel} from "@mui/lab";
 import SelectS3Objects from "../dialogs/SelectS3Objects/SelectS3Objects";
 import {DataGrid} from "@mui/x-data-grid";
+import temp from "../../assets/Capture.png";
 
 const AuditProgram = () => {
     const [selectDialogOpen, setSelectDialogOpen] = useState(false);
@@ -28,7 +29,10 @@ const AuditProgram = () => {
         setValidationDialogOpen(true);
     };
 
-    const handleStartValidation = () => {
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+
+    async function handleStartValidation() {
+        await delay(3000);
         handleValidationDialogOpen();
     };
 
@@ -104,7 +108,7 @@ const AuditProgram = () => {
             <Dialog open={validationDialogOpen} onClose={handleValidationDialogClose} fullWidth={true} maxWidth={'lg'}>
                 <DialogTitle>Validation Results</DialogTitle>
                 <DialogContent>
-                    <SelectS3Objects ref={childRef}/>
+                    <img src={temp} alt="AnyCompany"/>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleSelectedDocuments}>Ok</Button>

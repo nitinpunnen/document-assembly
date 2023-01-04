@@ -46,14 +46,16 @@ const UploadFile = (props) => {
                     const documentId = 's3://documentassembly-gama-landingzone203749-dev/public/' + result.key
                     data.fileName = 'public/' + data.fileName;
                     data.s3_document_id = documentId;
-                    data._language_code =  "en";
+                    data._language_code = "en";
 
                     const metadataJson = {
-                        "EventType": "NewDocument", "DocumentId": documentId, "Attributes": data
+                        "DocumentId": documentId, "Attributes": data
                     }
-                    console.log("metadataJson ", metadataJson);
                     try {
                         await Storage.put(origFileName + '.metadata.json', metadataJson);
+                        // Adding data to DocumentDB
+                        metadataJson["EventType"] = "NewDocument";
+                        console.log("metadataJson ", metadataJson);
                         await API.post('assemblrBucketDetails', '/assemblr/updateMetadata', {
                             headers: {
                                 'Content-Type': 'application/json',

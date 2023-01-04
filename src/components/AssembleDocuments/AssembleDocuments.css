@@ -12,8 +12,17 @@
     border: 1px solid #F1EEEE;
 }
 
-.amplify-field, .amplify-input {
+.amplify-heading--6 {
+    margin: 10px 0;
+}
+
+.amplify-field, .amplify-text {
+    margin-top: 5px;
     font-size: 0.9em;
+}
+
+.amplify-input {
+    font-size: 0.8em;
     padding: 1px 6px;
 }
 
@@ -27,10 +36,15 @@
     background-color: #f9f9f9;
 }
 
+.amplify-expander__trigger {
+    color: rgb(245, 102, 0);
+}
+
 pre {
     font-family: inherit;
-    white-space: pre-wrap;            /* css-3 */
-    white-space: -moz-pre-wrap !important;   /* Mozilla */
-    white-space: -o-pre-wrap;      /* Opera 7 */
-    word-wrap: break-word !important;         /* Internet Explorer 5.5+ */
+    overflow: auto;
+    padding: 10px;
+    white-space: pre-wrap; /* css-3 */
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
 }

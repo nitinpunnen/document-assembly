@@ -62,27 +62,31 @@ const ObjectAttributes = forwardRef((props, documentRef) => {
                             <tbody>
                             <tr>
                                 <td>Document Title</td>
-                                <td><TextField name="name" value={docProps.name} onChange={handleFormEdit}/></td>
+                                <td><TextField name="name" value={docProps.name || ''} onChange={handleFormEdit}/></td>
                             </tr>
                             <tr>
                                 <td>Author</td>
-                                <td><TextField name="author" value={docProps.author} onChange={handleFormEdit}/></td>
+                                <td><TextField name="author" value={docProps.author || ''} onChange={handleFormEdit}/></td>
                             </tr>
                             <tr>
                                 <td>Category</td>
-                                <td><TextField name="category" value={docProps.category} onChange={handleFormEdit}/></td>
+                                <td><TextField name="category" value={docProps.category || ''} onChange={handleFormEdit}/></td>
                             </tr>
                             <tr>
                                 <td>Created At</td>
-                                <td><TextField name="createdAt" value={docProps.createdAt} onChange={handleFormEdit} disabled/></td>
+                                <td><TextField name="createdAt" value={docProps.createdAt || ''} onChange={handleFormEdit} disabled/></td>
                             </tr>
                             <tr>
                                 <td>Data Source</td>
-                                <td><TextField name="dataSource" value={docProps.dataSource} onChange={handleFormEdit}/></td>
+                                <td><TextField name="dataSource" value={docProps.dataSource || ''} onChange={handleFormEdit}/></td>
                             </tr>
                             <tr>
                                 <td>Language Code</td>
-                                <td><TextField name="_language_code" value={docProps._language_code} onChange={handleFormEdit} disabled/></td>
+                                <td><TextField name="_language_code" value={docProps._language_code || ''} onChange={handleFormEdit} disabled/></td>
+                            </tr>
+                            <tr>
+                                <td>Additional Tags</td>
+                                <td><TextField name="additionalTags" value={docProps.additionalTags || ''} onChange={handleFormEdit} disabled/></td>
                             </tr>
                             </tbody>
                         </table>
@@ -92,19 +96,19 @@ const ObjectAttributes = forwardRef((props, documentRef) => {
                             <tbody>
                             <tr>
                                 <td>Department</td>
-                                <td><TextField name="department" value={docProps.department} onChange={handleFormEdit}/></td>
+                                <td><TextField name="department" value={docProps.department || ''} onChange={handleFormEdit}/></td>
                             </tr>
                             <tr>
                                 <td>Commercial Item</td>
-                                <td><TextField name="commercialItem" value={docProps.commercialItem} onChange={handleFormEdit}/></td>
+                                <td><TextField name="commercialItem" value={docProps.commercialItem || ''} onChange={handleFormEdit}/></td>
                             </tr>
                             <tr>
                                 <td>Event</td>
-                                <td><TextField name="event" value={docProps.event} onChange={handleFormEdit}/></td>
+                                <td><TextField name="event" value={docProps.event || ''} onChange={handleFormEdit}/></td>
                             </tr>
                             <tr>
                                 <td>Accounting Group</td>
-                                <td><TextField name="accountingGroup" value={docProps.accountingGroup} onChange={handleFormEdit}/></td>
+                                <td><TextField name="accountingGroup" value={docProps.accountingGroup || ''} onChange={handleFormEdit}/></td>
                             </tr>
                             </tbody>
                         </table>
@@ -117,19 +121,19 @@ const ObjectAttributes = forwardRef((props, documentRef) => {
                             <tbody>
                             <tr>
                                 <td>Classification</td>
-                                <td><TextField name="classification" value={docProps.classification} onChange={handleFormEdit}/></td>
+                                <td><TextField name="classification" value={docProps.classification || ''} onChange={handleFormEdit}/></td>
                             </tr>
                             <tr>
                                 <td>ITAR ?</td>
-                                <td><TextField name="itar" value={docProps.itar} onChange={handleFormEdit}/></td>
+                                <td><TextField name="itar" value={docProps.itar || ''} onChange={handleFormEdit}/></td>
                             </tr>
                             <tr>
                                 <td>PCI</td>
-                                <td><TextField name="pci" value={docProps.pci} onChange={handleFormEdit}/></td>
+                                <td><TextField name="pci" value={docProps.pci || ''} onChange={handleFormEdit}/></td>
                             </tr>
                             <tr>
                                 <td>HIPAA ?</td>
-                                <td><TextField name="hipaa" value={docProps.hipaa} onChange={handleFormEdit}/></td>
+                                <td><TextField name="hipaa" value={docProps.hipaa || ''} onChange={handleFormEdit}/></td>
                             </tr>
                             </tbody>
                         </table>

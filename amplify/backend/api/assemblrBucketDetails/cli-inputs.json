@@ -63,6 +63,13 @@
       "permissions": {
         "setting": "open"
       }
+    },
+    "/assemblr/getTemplate": {
+      "name": "/assemblr/getTemplate",
+      "lambdaFunction": "assemblrGetDocTemplate",
+      "permissions": {
+        "setting": "open"
+      }
     }
   }
 }

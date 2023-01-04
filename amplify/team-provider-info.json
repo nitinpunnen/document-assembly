@@ -49,7 +49,7 @@
         },
         "extractPdfDocument": {
           "deploymentBucketName": "amplify-documentassembly-dev-203749-deployment",
-          "s3Key": "amplify-builds/extractPdfDocument-4e70445630732b574358-build.zip"
+          "s3Key": "amplify-builds/extractPdfDocument-2f2b2b74687741674d74-build.zip"
         },
         "fetchDocumentFromDatabase": {
           "deploymentBucketName": "amplify-documentassembly-dev-203749-deployment",
@@ -57,7 +57,11 @@
         },
         "assemblrCallTextract": {
           "deploymentBucketName": "amplify-documentassembly-dev-203749-deployment",
-          "s3Key": "amplify-builds/assemblrCallTextract-423231624d7469754152-build.zip"
+          "s3Key": "amplify-builds/assemblrCallTextract-6c5a6e4679697141786d-build.zip"
+        },
+        "assemblrGetDocTemplate": {
+          "deploymentBucketName": "amplify-documentassembly-dev-203749-deployment",
+          "s3Key": "amplify-builds/assemblrGetDocTemplate-71674946456f4f2f6142-build.zip"
         }
       }
     }

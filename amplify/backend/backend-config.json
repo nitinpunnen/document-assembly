@@ -117,6 +117,14 @@
             "Name",
             "Arn"
           ]
+        },
+        {
+          "category": "function",
+          "resourceName": "assemblrGetDocTemplate",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
         }
       ]
     }
@@ -170,6 +178,11 @@
       "service": "Lambda"
     },
     "assemblrCallTextract": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "assemblrGetDocTemplate": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
