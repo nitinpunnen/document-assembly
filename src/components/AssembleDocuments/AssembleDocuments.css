@@ -16,27 +16,27 @@
     margin: 10px 0;
 }
 
-.amplify-field, .amplify-text {
+.assemble-content .amplify-field, .assemble-content .amplify-text {
     margin-top: 5px;
     font-size: 0.9em;
 }
 
-.amplify-input {
+.assemble-content .amplify-input {
     font-size: 0.8em;
     padding: 1px 6px;
 }
 
-.amplify-select {
+.assemble-content .amplify-select {
     font-size: 0.9em;
 }
 
-.amplify-expander {
+.assemble-content .amplify-expander {
     border-radius: 0;
     border: 0px;
     background-color: #f9f9f9;
 }
 
-.amplify-expander__trigger {
+.assemble-content .amplify-expander__trigger {
     color: rgb(245, 102, 0);
 }
 

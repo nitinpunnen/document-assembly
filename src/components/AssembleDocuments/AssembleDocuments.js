@@ -64,6 +64,7 @@ const AssembleDocuments = () => {
             padding="1rem"
             width="80%"
             style={{display: "block", margin: "10px auto"}}
+            className="assemble-content"
         >
             <Dialog open={editDialogOpen} onClose={handleEditDialogClose} fullWidth={true} maxWidth={'xl'}>
                 <DialogTitle>Edit Content</DialogTitle>
@@ -76,7 +77,7 @@ const AssembleDocuments = () => {
                 </DialogActions>
             </Dialog>
             <Dialog open={searchDialogOpen} onClose={handleSearchDialogClose} fullWidth={true} maxWidth={'xl'}>
-                <DialogTitle>Search Documents</DialogTitle>
+                <DialogTitle>Search Document Content</DialogTitle>
                 <DialogContent>
                     <SearchDocumentContent selectedText={selectedText}/>
                 </DialogContent>

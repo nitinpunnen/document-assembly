@@ -36,15 +36,18 @@ const SelectS3Objects = forwardRef((props, ref) => {
 
     const handleSelect = (event, nodeIds) => {
         setSelected(nodeIds);
+        console.log("nodeIds ", nodeIds)
         const allDocuments = files[nodeIds];
         if(allDocuments) {
             const documents = [];
+            let rowId = 0;
             allDocuments.map((document, index) => {
                 if(!document.Key.includes('metadata.json')) {
-                    document.id = index;
+                    document.id = rowId++;
                     documents.push(document);
                 }
             })
+            console.log(documents)
             setDocuments(documents);
             setFolderName(folderName);
         }
@@ -184,6 +187,7 @@ const SelectS3Objects = forwardRef((props, ref) => {
                                 setSelectionModel(newSelectionModel);
                                 let selectedDocuments = [];
                                 newSelectionModel.map((selectedIndex) => {
+                                    console.log("Index", documents[selectedIndex])
                                     selectedDocuments.push(documents[selectedIndex])
                                 });
                                 setSelectedDocuments(selectedDocuments);
