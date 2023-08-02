@@ -9,7 +9,7 @@
       "UnauthRoleName": "amplify-documentassembly-dev-203749-unauthRole",
       "StackName": "amplify-documentassembly-dev-203749",
       "StackId": "arn:aws:cloudformation:us-west-2:758471554330:stack/amplify-documentassembly-dev-203749/8ece5ab0-827b-11ed-a0d7-0603293da8c5",
-      "AmplifyAppId": "d31lcppvsse1rq"
+      "AmplifyAppId": "d27h6utnt6z5b6"
     },
     "categories": {
       "auth": {
@@ -63,6 +63,36 @@
           "deploymentBucketName": "amplify-documentassembly-dev-203749-deployment",
           "s3Key": "amplify-builds/assemblrGetDocTemplate-71674946456f4f2f6142-build.zip"
         }
+      }
+    }
+  },
+  "main": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-documentassembly-main-123155-authRole",
+      "UnauthRoleArn": "arn:aws:iam::616331564577:role/amplify-documentassembly-main-123155-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::616331564577:role/amplify-documentassembly-main-123155-authRole",
+      "Region": "us-west-1",
+      "DeploymentBucketName": "amplify-documentassembly-main-123155-deployment",
+      "UnauthRoleName": "amplify-documentassembly-main-123155-unauthRole",
+      "StackName": "amplify-documentassembly-main-123155",
+      "StackId": "arn:aws:cloudformation:us-west-1:616331564577:stack/amplify-documentassembly-main-123155/16613a90-30a2-11ee-9b1a-06092a82fff3",
+      "AmplifyAppId": "d1blclgrnu4s6k"
+    },
+    "categories": {
+      "function": {
+        "assemblrGetObjectMetadata": {},
+        "assemblrUpdateMetadata": {},
+        "asssemblrSearch": {},
+        "assemblrListBucket": {},
+        "assemblrAddFolder": {},
+        "getDocumentSignedURL": {},
+        "extractPdfDocument": {},
+        "fetchDocumentFromDatabase": {},
+        "assemblrCallTextract": {},
+        "assemblrGetDocTemplate": {}
+      },
+      "auth": {
+        "documentassemblyf4737ecd": {}
       }
     }
   }
